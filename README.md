@@ -1,4 +1,4 @@
-# Log
-Logging components used by PocketMine-MP and related projects.
-This library is PSR-3-esque, but not entirely compliant.
-It also contains some pthreads-specialized logger components.
+# LogPthreads
+[![Build Status](https://travis-ci.com/pmmp/LogPthreads.svg?branch=master)](https://travis-ci.com/pmmp/LogPthreads)
+
+This repository contains pthreads-specialized logging units implementing the interfaces provided by `pocketmine/log`.
