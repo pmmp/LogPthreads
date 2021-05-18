@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         php: [7.4.19, 8.0.6]
-        pthreads-version: 374df2d8cf61a30e7f214a7f00a59a6b24a65c21
+        pthreads-version: [374df2d8cf61a30e7f214a7f00a59a6b24a65c21]
 
     name: PHP ${{ matrix.php }}
     runs-on: ubuntu-18.04
