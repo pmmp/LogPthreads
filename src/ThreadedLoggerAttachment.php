@@ -17,4 +17,11 @@
 
 abstract class ThreadedLoggerAttachment extends \Volatile{
 
+	/**
+	 * @param mixed $level
+	 * @param string $message
+	 *
+	 * @return void
+	 */
+	abstract public function log($level, $message);
 }
