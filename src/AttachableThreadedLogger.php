@@ -15,16 +15,50 @@
  * GNU General Public License for more details.
 */
 
-interface AttachableThreadedLogger extends \Logger{
+abstract class AttachableThreadedLogger extends \ThreadedLogger{
 
-	public function addAttachment(\ThreadedLoggerAttachment $attachment) : void;
+	/** @var \Volatile|\ThreadedLoggerAttachment[] */
+	protected $attachments;
 
-	public function removeAttachment(\ThreadedLoggerAttachment $attachment) : void;
+	public function __construct(){
+		$this->attachments = new \Volatile();
+	}
 
-	public function removeAttachments() : void;
+	/**
+	 * @param ThreadedLoggerAttachment $attachment
+	 *
+	 * @return void
+	 */
+	public function addAttachment(\ThreadedLoggerAttachment $attachment){
+		$this->attachments[] = $attachment;
+	}
+
+	/**
+	 * @param ThreadedLoggerAttachment $attachment
+	 *
+	 * @return void
+	 */
+	public function removeAttachment(\ThreadedLoggerAttachment $attachment){
+		foreach($this->attachments as $i => $a){
+			if($attachment === $a){
+				unset($this->attachments[$i]);
+			}
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function removeAttachments(){
+		foreach($this->attachments as $i => $a){
+			unset($this->attachments[$i]);
+		}
+	}
 
 	/**
 	 * @return \ThreadedLoggerAttachment[]
 	 */
-	public function getAttachments() : array;
+	public function getAttachments(){
+		return (array) $this->attachments;
+	}
 }
