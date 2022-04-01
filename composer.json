@@ -18,5 +18,10 @@
     },
     "autoload": {
         "classmap": ["./src"]
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }
