@@ -4,7 +4,7 @@
     "type": "library",
     "license": "LGPL-3.0",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "ext-pthreads": "~3.2.0 || ^4.0",
         "pocketmine/log": "^0.4.0"
     },
