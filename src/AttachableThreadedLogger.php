@@ -17,11 +17,14 @@
 
 abstract class AttachableThreadedLogger extends \ThreadedLogger{
 
-	/** @var \Volatile|\ThreadedLoggerAttachment[] */
+	/**
+	 * @var \ThreadedArray|\ThreadedLoggerAttachment[]
+	 * @phpstan-var \ThreadedArray<int, \ThreadedLoggerAttachment>
+	 */
 	protected $attachments;
 
 	public function __construct(){
-		$this->attachments = new \Volatile();
+		$this->attachments = new \ThreadedArray();
 	}
 
 	/**
