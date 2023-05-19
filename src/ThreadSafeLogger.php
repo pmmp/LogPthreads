@@ -15,6 +15,8 @@
  * GNU General Public License for more details.
 */
 
-abstract class ThreadedLogger extends \ThreadedBase implements Logger{
+use pmmp\thread\ThreadSafe;
+
+abstract class ThreadSafeLogger extends ThreadSafe implements Logger{
 
 }

@@ -15,7 +15,9 @@
  * GNU General Public License for more details.
 */
 
-abstract class ThreadedLoggerAttachment extends \ThreadedBase{
+use pmmp\thread\ThreadSafe;
+
+abstract class ThreadSafeLoggerAttachment extends ThreadSafe{
 
 	/**
 	 * @param mixed $level

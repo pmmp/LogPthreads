@@ -15,33 +15,35 @@
  * GNU General Public License for more details.
 */
 
-abstract class AttachableThreadedLogger extends \ThreadedLogger{
+use pmmp\thread\ThreadSafeArray;
+
+abstract class AttachableThreadSafeLogger extends \ThreadSafeLogger{
 
 	/**
-	 * @var \ThreadedArray|\ThreadedLoggerAttachment[]
-	 * @phpstan-var \ThreadedArray<int, \ThreadedLoggerAttachment>
+	 * @var ThreadSafeArray|\ThreadSafeLoggerAttachment[]
+	 * @phpstan-var ThreadSafeArray<int, \ThreadSafeLoggerAttachment>
 	 */
 	protected $attachments;
 
 	public function __construct(){
-		$this->attachments = new \ThreadedArray();
+		$this->attachments = new ThreadSafeArray();
 	}
 
 	/**
-	 * @param ThreadedLoggerAttachment $attachment
+	 * @param ThreadSafeLoggerAttachment $attachment
 	 *
 	 * @return void
 	 */
-	public function addAttachment(\ThreadedLoggerAttachment $attachment){
+	public function addAttachment(\ThreadSafeLoggerAttachment $attachment){
 		$this->attachments[] = $attachment;
 	}
 
 	/**
-	 * @param ThreadedLoggerAttachment $attachment
+	 * @param ThreadSafeLoggerAttachment $attachment
 	 *
 	 * @return void
 	 */
-	public function removeAttachment(\ThreadedLoggerAttachment $attachment){
+	public function removeAttachment(\ThreadSafeLoggerAttachment $attachment){
 		foreach($this->attachments as $i => $a){
 			if($attachment === $a){
 				unset($this->attachments[$i]);
@@ -59,7 +61,7 @@ abstract class AttachableThreadedLogger extends \ThreadedLogger{
 	}
 
 	/**
-	 * @return \ThreadedLoggerAttachment[]
+	 * @return \ThreadSafeLoggerAttachment[]
 	 */
 	public function getAttachments(){
 		return (array) $this->attachments;
